@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.UserDao">
+
+    <resultMap type="com.me.entity.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="psw" column="psw" jdbcType="VARCHAR"/>
+        <result property="nick" column="nick" jdbcType="VARCHAR"/>
+        <result property="uright" column="uright" jdbcType="INTEGER"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="balance" column="balance" jdbcType="NUMERIC"/>
+        <result property="isShop" column="is_shop" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--获取集合-->
+    <select id="queryList" resultMap="UserMap">
+        select *
+        from t_user
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select id,
+               code,
+               psw,
+               nick,
+               uright,
+               tel,
+               balance,
+               is_shop,
+               address
+        from t_user
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryListByLimit" resultMap="UserMap">
+        select
+        id, code, psw, nick, uright, tel, balance, is_shop, address
+        from t_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="psw != null and psw != ''">
+                and psw = #{psw}
+            </if>
+            <if test="nick != null and nick != ''">
+                and nick = #{nick}
+            </if>
+            <if test="uright != null">
+                and uright = #{uright}
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel = #{tel}
+            </if>
+            <if test="balance != null">
+                and balance = #{balance}
+            </if>
+            <if test="isShop != null">
+                and is_shop = #{isShop}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from t_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="psw != null and psw != ''">
+                and psw = #{psw}
+            </if>
+            <if test="nick != null and nick != ''">
+                and nick = #{nick}
+            </if>
+            <if test="uright != null">
+                and uright = #{uright}
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel = #{tel}
+            </if>
+            <if test="balance != null">
+                and balance = #{balance}
+            </if>
+            <if test="isShop != null">
+                and is_shop = #{isShop}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into t_user(code, psw, nick, uright, tel, balance, is_shop, address)
+        values (#{code}, #{psw}, #{nick}, #{uright}, #{tel}, #{balance}, #{isShop}, #{address})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_user(code, psw, nick, uright, tel, balance, is_shop, address)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.code}, #{entity.psw}, #{entity.nick}, #{entity.uright}, #{entity.tel}, #{entity.balance},
+            #{entity.isShop}, #{entity.address})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_user(code, psw, nick, uright, tel, balance, is_shop, address)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.code}, #{entity.psw}, #{entity.nick}, #{entity.uright}, #{entity.tel}, #{entity.balance},
+            #{entity.isShop}, #{entity.address})
+        </foreach>
+        on duplicate key update
+        code = values(code)psw = values(psw)nick = values(nick)uright = values(uright)tel = values(tel)balance =
+        values(balance)is_shop = values(is_shop)address = values(address)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update t_user
+        <set>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="psw != null and psw != ''">
+                psw = #{psw},
+            </if>
+            <if test="nick != null and nick != ''">
+                nick = #{nick},
+            </if>
+            <if test="uright != null">
+                uright = #{uright},
+            </if>
+            <if test="tel != null and tel != ''">
+                tel = #{tel},
+            </if>
+            <if test="balance != null">
+                balance = #{balance},
+            </if>
+            <if test="isShop != null">
+                is_shop = #{isShop},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from t_user
+        where id = #{id}
+    </delete>
+
+    <!--通过关键字查找-->
+    <select id="getDimList" resultMap="UserMap">
+        select
+        id, code, psw, nick, uright, tel, balance, is_shop, address
+        from t_user
+        <where>
+            <if test="id != null">
+                and id LIKE CONCAT('%', #{id}, '%')
+            </if>
+            <if test="code != null and code != ''">
+                and code LIKE CONCAT('%', #{code}, '%')
+            </if>
+            <if test="psw != null and psw != ''">
+                and psw LIKE CONCAT('%', #{psw}, '%')
+            </if>
+            <if test="nick != null and nick != ''">
+                and nick LIKE CONCAT('%', #{nick}, '%')
+            </if>
+            <if test="uright != null">
+                and uright LIKE CONCAT('%', #{uright}, '%')
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel LIKE CONCAT('%', #{tel}, '%')
+            </if>
+            <if test="balance != null">
+                and balance LIKE CONCAT('%', #{balance}, '%')
+            </if>
+            <if test="isShop != null">
+                and is_shop LIKE CONCAT('%', #{isShop}, '%')
+            </if>
+            <if test="address != null and address != ''">
+                and address LIKE CONCAT('%', #{address}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
+
