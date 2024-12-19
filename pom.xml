@@ -8,13 +8,13 @@
         <version>2.5.6</version>
         <relativePath/>
     </parent>
-    <groupId>com.fb</groupId>
-    <artifactId>study</artifactId>
+    <groupId>com.me</groupId>
+    <artifactId>yushi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>study</name>
-    <description>study</description>
+    <name>yushi</name>
+    <description>yushi</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <roses.kernel.version>7.3.3</roses.kernel.version>
     </properties>
     <dependencies>
@@ -65,7 +65,6 @@
             <version>8.0.27</version>
         </dependency>
 
-        swagger
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
