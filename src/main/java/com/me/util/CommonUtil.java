@@ -3,6 +3,7 @@ package com.me.util;
 import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.io.resource.ResourceUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
-@Api(tags = "")
+@Api(tags = "一些工具接口")
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
 public class CommonUtil {
     @Value("${spring.web.resources.static-locations}")
     String imgDir;
+
+    @ApiOperation("上传图片")
     @PostMapping("/upload")
     public String uploadImage(@RequestParam("file") MultipartFile file) {
 
