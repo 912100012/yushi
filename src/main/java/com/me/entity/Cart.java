@@ -11,7 +11,7 @@ import java.util.*;
 @Data
 @ApiModel("购物车表")
 public class Cart implements Serializable {
-    private static final long serialVersionUID = -59024873863828245L;
+    private static final long serialVersionUID = 700469610484398467L;
     /**
      * 购物车ID
      */

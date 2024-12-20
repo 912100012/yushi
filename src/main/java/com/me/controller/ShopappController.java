@@ -18,7 +18,7 @@ import cn.hutool.core.util.*;
  * 店铺申请表(Shopapp)表控制层
  *
  * @author yushi
- * @since 2024-12-19 21:01:05
+ * @since 2024-12-20 12:02:01
  */
 @Api(tags = "店铺申请表")
 @RestController
@@ -36,7 +36,7 @@ public class ShopappController {
      *
      * @return 全部数据
      */
-    @ApiOperation("参数无，获取该表的所有数据")
+    @ApiOperation("SELECT *")
     @GetMapping("/list")
     public SuccessResponse<?> queryList(Shopapp shopapp) {
         List<Shopapp> shopapps = this.shopappService.queryListByLimit(shopapp);
@@ -48,7 +48,7 @@ public class ShopappController {
     /**
      * 通过条件查找多条数据
      */
-    @ApiOperation("通过属性赋值查找多条数据")
+    @ApiOperation("查找多条数据")
     @PostMapping("/some")
     public SuccessResponse<?> queryListByLimit(@RequestBody Shopapp shopapp) {
         List<Shopapp> shopapps = this.shopappService.queryListByLimit(shopapp);
@@ -61,7 +61,7 @@ public class ShopappController {
     /**
      * 通过条件查找一条数据
      */
-    @ApiOperation("通过属性赋值查找单条数据")
+    @ApiOperation("查找单条数据")
     @PostMapping("/one")
     public SuccessResponse<?> queryOne(@RequestBody Shopapp shopapp) {
         Shopapp oneshopapp = this.shopappService.queryOne(shopapp);
@@ -106,7 +106,7 @@ public class ShopappController {
      * @param shopapp 实体
      * @return 新增结果
      */
-    @ApiOperation("新增一条数据")
+    @ApiOperation("INSERT")
     @PostMapping
     public SuccessResponse<?> add(@RequestBody Shopapp shopapp) {
         return new SuccessResponse<Shopapp>(this.shopappService.insert(shopapp), "添加成功");
@@ -119,7 +119,7 @@ public class ShopappController {
      * @return 编辑结果
      */
     @PutMapping
-    @ApiOperation("修改一条数据")
+    @ApiOperation("UPDATE")
     public SuccessResponse<?> edit(@RequestBody Shopapp shopapp) {
         return new SuccessResponse<Shopapp>(this.shopappService.update(shopapp), "修改成功");
     }
@@ -131,12 +131,12 @@ public class ShopappController {
      * @return 删除是否成功
      */
     @DeleteMapping("/{id}")
-    @ApiOperation("通过主键ID删除一条数据")
+    @ApiOperation("DELETE")
     public SuccessResponse<?> deleteById(@ApiParam("主键ID") @PathVariable("id") Integer id) {
         return new SuccessResponse<Boolean>(this.shopappService.deleteById(id), "删除成功");
     }
 
-    @ApiOperation("通过关键字模糊查找，sql的LIKE")
+    @ApiOperation("LIKE模糊查找")
     @PostMapping("/dim")
     public SuccessResponse<?> queryDimList(@RequestBody Shopapp shopapp) {
         List<Shopapp> shopapps = this.shopappService.getDimList(shopapp);

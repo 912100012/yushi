@@ -10,7 +10,7 @@ import java.util.List;
  * 珠宝产品表(Product)表数据库访问层
  *
  * @author yushi
- * @since 2024-12-19 21:01:04
+ * @since 2024-12-20 12:02:01
  */
 public interface ProductDao {
 

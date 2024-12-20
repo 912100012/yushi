@@ -18,7 +18,7 @@ import cn.hutool.core.util.*;
  * 用户信息表(User)表控制层
  *
  * @author yushi
- * @since 2024-12-19 21:01:05
+ * @since 2024-12-20 12:02:02
  */
 @Api(tags = "用户信息表")
 @RestController
@@ -36,7 +36,7 @@ public class UserController {
      *
      * @return 全部数据
      */
-    @ApiOperation("参数无，获取该表的所有数据")
+    @ApiOperation("SELECT *")
     @GetMapping("/list")
     public SuccessResponse<?> queryList(User user) {
         List<User> users = this.userService.queryListByLimit(user);
@@ -48,7 +48,7 @@ public class UserController {
     /**
      * 通过条件查找多条数据
      */
-    @ApiOperation("通过属性赋值查找多条数据")
+    @ApiOperation("查找多条数据")
     @PostMapping("/some")
     public SuccessResponse<?> queryListByLimit(@RequestBody User user) {
         List<User> users = this.userService.queryListByLimit(user);
@@ -61,7 +61,7 @@ public class UserController {
     /**
      * 通过条件查找一条数据
      */
-    @ApiOperation("通过属性赋值查找单条数据")
+    @ApiOperation("查找单条数据")
     @PostMapping("/one")
     public SuccessResponse<?> queryOne(@RequestBody User user) {
         User oneuser = this.userService.queryOne(user);
@@ -106,7 +106,7 @@ public class UserController {
      * @param user 实体
      * @return 新增结果
      */
-    @ApiOperation("新增一条数据")
+    @ApiOperation("INSERT")
     @PostMapping
     public SuccessResponse<?> add(@RequestBody User user) {
         return new SuccessResponse<User>(this.userService.insert(user), "添加成功");
@@ -119,7 +119,7 @@ public class UserController {
      * @return 编辑结果
      */
     @PutMapping
-    @ApiOperation("修改一条数据")
+    @ApiOperation("UPDATE")
     public SuccessResponse<?> edit(@RequestBody User user) {
         return new SuccessResponse<User>(this.userService.update(user), "修改成功");
     }
@@ -131,12 +131,12 @@ public class UserController {
      * @return 删除是否成功
      */
     @DeleteMapping("/{id}")
-    @ApiOperation("通过主键ID删除一条数据")
+    @ApiOperation("DELETE")
     public SuccessResponse<?> deleteById(@ApiParam("主键ID") @PathVariable("id") Integer id) {
         return new SuccessResponse<Boolean>(this.userService.deleteById(id), "删除成功");
     }
 
-    @ApiOperation("通过关键字模糊查找，sql的LIKE")
+    @ApiOperation("LIKE模糊查找")
     @PostMapping("/dim")
     public SuccessResponse<?> queryDimList(@RequestBody User user) {
         List<User> users = this.userService.getDimList(user);

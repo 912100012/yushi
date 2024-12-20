@@ -13,7 +13,7 @@ import java.util.*;
 @Data
 @ApiModel("珠宝产品表")
 public class ProductVo implements Serializable {
-    private static final long serialVersionUID = 115452012441261228L;
+    private static final long serialVersionUID = 182451047786143480L;
 
 
 }

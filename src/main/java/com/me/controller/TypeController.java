@@ -18,7 +18,7 @@ import cn.hutool.core.util.*;
  * 珠宝产品种类表(Type)表控制层
  *
  * @author yushi
- * @since 2024-12-19 21:01:05
+ * @since 2024-12-20 12:02:01
  */
 @Api(tags = "珠宝产品种类表")
 @RestController
@@ -36,7 +36,7 @@ public class TypeController {
      *
      * @return 全部数据
      */
-    @ApiOperation("参数无，获取该表的所有数据")
+    @ApiOperation("SELECT *")
     @GetMapping("/list")
     public SuccessResponse<?> queryList(Type type) {
         List<Type> types = this.typeService.queryListByLimit(type);
@@ -48,7 +48,7 @@ public class TypeController {
     /**
      * 通过条件查找多条数据
      */
-    @ApiOperation("通过属性赋值查找多条数据")
+    @ApiOperation("查找多条数据")
     @PostMapping("/some")
     public SuccessResponse<?> queryListByLimit(@RequestBody Type type) {
         List<Type> types = this.typeService.queryListByLimit(type);
@@ -61,7 +61,7 @@ public class TypeController {
     /**
      * 通过条件查找一条数据
      */
-    @ApiOperation("通过属性赋值查找单条数据")
+    @ApiOperation("查找单条数据")
     @PostMapping("/one")
     public SuccessResponse<?> queryOne(@RequestBody Type type) {
         Type onetype = this.typeService.queryOne(type);
@@ -106,7 +106,7 @@ public class TypeController {
      * @param type 实体
      * @return 新增结果
      */
-    @ApiOperation("新增一条数据")
+    @ApiOperation("INSERT")
     @PostMapping
     public SuccessResponse<?> add(@RequestBody Type type) {
         return new SuccessResponse<Type>(this.typeService.insert(type), "添加成功");
@@ -119,7 +119,7 @@ public class TypeController {
      * @return 编辑结果
      */
     @PutMapping
-    @ApiOperation("修改一条数据")
+    @ApiOperation("UPDATE")
     public SuccessResponse<?> edit(@RequestBody Type type) {
         return new SuccessResponse<Type>(this.typeService.update(type), "修改成功");
     }
@@ -131,12 +131,12 @@ public class TypeController {
      * @return 删除是否成功
      */
     @DeleteMapping("/{id}")
-    @ApiOperation("通过主键ID删除一条数据")
+    @ApiOperation("DELETE")
     public SuccessResponse<?> deleteById(@ApiParam("主键ID") @PathVariable("id") Integer id) {
         return new SuccessResponse<Boolean>(this.typeService.deleteById(id), "删除成功");
     }
 
-    @ApiOperation("通过关键字模糊查找，sql的LIKE")
+    @ApiOperation("LIKE模糊查找")
     @PostMapping("/dim")
     public SuccessResponse<?> queryDimList(@RequestBody Type type) {
         List<Type> types = this.typeService.getDimList(type);

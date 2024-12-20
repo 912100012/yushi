@@ -12,7 +12,7 @@ import java.util.*;
 @Data
 @ApiModel("用户信息表")
 public class UserVo implements Serializable {
-    private static final long serialVersionUID = 909173795312631032L;
+    private static final long serialVersionUID = -47739899516935399L;
 
 
 }

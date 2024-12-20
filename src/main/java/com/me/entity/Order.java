@@ -12,7 +12,7 @@ import java.util.*;
 @Data
 @ApiModel("历史购买订单表")
 public class Order implements Serializable {
-    private static final long serialVersionUID = 917522974933091908L;
+    private static final long serialVersionUID = -44225177732336287L;
     /**
      * 订单ID
      */

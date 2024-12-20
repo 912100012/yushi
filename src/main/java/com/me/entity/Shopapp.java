@@ -11,7 +11,7 @@ import java.util.*;
 @Data
 @ApiModel("店铺申请表")
 public class Shopapp implements Serializable {
-    private static final long serialVersionUID = -73953182357728039L;
+    private static final long serialVersionUID = 898972398260423554L;
     /**
      * 申请ID
      */

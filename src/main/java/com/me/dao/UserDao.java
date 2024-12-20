@@ -10,7 +10,7 @@ import java.util.List;
  * 用户信息表(User)表数据库访问层
  *
  * @author yushi
- * @since 2024-12-19 21:01:05
+ * @since 2024-12-20 12:02:02
  */
 public interface UserDao {
 

@@ -10,7 +10,7 @@ import java.util.*;
  * 收藏表(Favorite)表服务接口
  *
  * @author yushi
- * @since 2024-12-19 21:01:04
+ * @since 2024-12-20 12:02:00
  */
 public interface FavoriteService {
 
