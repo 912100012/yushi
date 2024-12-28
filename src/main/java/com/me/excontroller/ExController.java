@@ -103,12 +103,13 @@ public class ExController {
         return new SuccessResponse<Map>(data, "种类字典请求成功");
     }
 
-    @ApiOperation(value = "操作购物车接口", notes = "body传入uid，pid，参数携带opt,+代表增加，-代表减少，字符串类型")
+    @ApiOperation(value = "操作购物车接口", notes = "body传入uid，pid，参数携带opt,p代表增加，m代表减少，字符串类型")
     @PostMapping("/optCart")
     public SuccessResponse<?> optCart(@RequestParam("opt") String opt, @RequestBody Cart cart) {
         Cart onecart = cartService.queryOne(cart);
-        if ("+".equals(opt)) {
+        if ("p".equals(opt)) {
             if (onecart == null) {
+                onecart = new Cart();
                 onecart.setCount(1);
                 onecart.setUid(cart.getUid());
                 onecart.setPid(cart.getPid());
@@ -120,20 +121,22 @@ public class ExController {
                 cartService.update(onecart);
             }
             return new SuccessResponse<>(onecart, "商品已成功添加到购物车");
-        } else if ("-".equals(opt)) {
+        } else if ("m".equals(opt)) {
             // 执行减少操作
             if (onecart == null) {
                 return new SuccessResponse<>(false, "没有购物车，删除失败", 500);
             } else {
                 if (onecart.getCount()==1){
                     cartService.deleteById(onecart.getId());
+                    return new SuccessResponse<>(null, "删除了最后一件产品，已清空");
                 }
                 else {
                     onecart.setCount(onecart.getCount()-1);
                     cartService.update(onecart);
+                    return new SuccessResponse<>(onecart, "删除一件产品");
                 }
-                return new SuccessResponse<>(onecart, "删除一件产品");
-            }
+                }
+
         } else {
             return new SuccessResponse<>(false, "无效的操作动作,只接受参数为'+'或'-'");
         }
