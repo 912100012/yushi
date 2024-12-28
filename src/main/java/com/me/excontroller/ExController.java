@@ -126,19 +126,63 @@ public class ExController {
             if (onecart == null) {
                 return new SuccessResponse<>(false, "没有购物车，删除失败", 500);
             } else {
-                if (onecart.getCount()==1){
+                if (onecart.getCount() == 1) {
                     cartService.deleteById(onecart.getId());
                     return new SuccessResponse<>(null, "删除了最后一件产品，已清空");
-                }
-                else {
-                    onecart.setCount(onecart.getCount()-1);
+                } else {
+                    onecart.setCount(onecart.getCount() - 1);
                     cartService.update(onecart);
                     return new SuccessResponse<>(onecart, "删除一件产品");
                 }
-                }
+            }
 
         } else {
             return new SuccessResponse<>(false, "无效的操作动作,只接受参数为'+'或'-'");
         }
     }
+
+    //收藏
+    @ApiOperation(value = "收藏", notes = "传入uid，pid,自动判断是否收藏过了")
+    @PostMapping("/fav")
+    public SuccessResponse<?> fav(@RequestBody Favorite fav) {
+        Favorite favorite = favoriteService.queryOne(fav);
+        if (favorite != null) {
+            return new SuccessResponse<>(false, "已经收藏过了");
+        } else {
+            favoriteService.insert(fav);
+            return new SuccessResponse<>(true, "收藏成功");
+        }
+    }
+
+    //批量购买
+    @ApiOperation(value = "批量购买（清空购物车）", notes = "传入cart对象集合")
+    @PostMapping("/batch/buy")
+    public SuccessResponse<?> batch_buy(@RequestBody List<Cart> cartList) {
+        double total = 0.0;
+        User user = userService.queryById(cartList.get(0).getUid());
+        for (Cart cart : cartList) {
+            Integer count = cart.getCount();
+            Product product = productService.queryById(cart.getPid());
+            double one_total = product.getPrice()*count;
+            total += one_total;
+        }
+        if (total > user.getBalance()){
+            return new SuccessResponse<>(false, "余额不足。");
+        }else{
+            for (Cart cart : cartList) {
+                Integer count = cart.getCount();
+                Product product = productService.queryById(cart.getPid());
+                for (int i = 0; i < count; i++) {
+                    Order order = new Order();
+                    order.setUid(user.getId());
+                    order.setPid(product.getId());
+                    buy(order);
+                }
+                cartService.deleteById(cart.getId());
+            }
+            return new SuccessResponse<>(true, "购买成功。");
+        }
+    }
+
+
 }
