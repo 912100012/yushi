@@ -1,0 +1,222 @@
+{
+	"info": {
+		"title": "玉石前后端开发",
+		"description": "",
+		"version": "1.0.0"
+	},
+	"swagger": "2.0",
+	"paths": {
+		"/typedic": {
+			"GET": {
+				"summary": "种类字典",
+				"description": "",
+				"tags": [],
+				"response": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "error",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/fav": {
+			"POST": {
+				"summary": "收藏",
+				"description": "",
+				"tags": [],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"uid\":1,\r\n    \"pid\":2\r\n}"
+						}
+					}
+				},
+				"response": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "error",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/buy": {
+			"POST": {
+				"summary": "单独购买",
+				"description": "",
+				"tags": [],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"uid\":1,\r\n    \"pid\":3\r\n}"
+						}
+					}
+				},
+				"response": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "error",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/center": {
+			"POST": {
+				"summary": "个人空间",
+				"description": "",
+				"tags": [],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"id\":1\r\n}"
+						}
+					}
+				},
+				"response": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "error",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/batch/buy": {
+			"POST": {
+				"summary": "清空购物车",
+				"description": "",
+				"tags": [],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "[{\r\n    \"id\":4,\r\n    \"uid\":1,\r\n    \"pid\":1,\r\n    \"count\":1\r\n},\r\n{\r\n    \"id\":8,\r\n    \"uid\":1,\r\n    \"pid\":3,\r\n    \"count\":1\r\n}\r\n]"
+						}
+					}
+				},
+				"response": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "error",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/optCart": {
+			"POST": {
+				"summary": "操作购物车",
+				"description": "",
+				"tags": [],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object"
+							},
+							"example": "{\r\n    \"uid\":1,\r\n    \"pid\":3\r\n}"
+						}
+					}
+				},
+				"response": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "error",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "127.0.0.1:9258",
+			"description": "默认环境",
+			"variables": {}
+		},
+		{
+			"url": "https://console-mock.apipost.cn/mock/e1d5ea12-0747-4524-8b1c-1e9bb49da4fb/",
+			"description": "Mock环境",
+			"variables": {}
+		}
+	]
+}
