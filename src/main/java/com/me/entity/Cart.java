@@ -1,5 +1,6 @@
 package com.me.entity;
 
+import java.util.Date;
 import java.io.Serializable;
 
 import lombok.Data;
@@ -11,7 +12,7 @@ import java.util.*;
 @Data
 @ApiModel("购物车表")
 public class Cart implements Serializable {
-    private static final long serialVersionUID = 700469610484398467L;
+    private static final long serialVersionUID = -16911690896723465L;
     /**
      * 购物车ID
      */
@@ -36,6 +37,12 @@ public class Cart implements Serializable {
     @ApiModelProperty("用户ID")
     private Integer uid;
 
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty("创建时间")
+    private Date ctime;
+
     public Cart() {
     }
 
@@ -43,11 +50,12 @@ public class Cart implements Serializable {
         this.id = id;
     }
 
-    public Cart(Integer id, Integer pid, Integer count, Integer uid) {
+    public Cart(Integer id, Integer pid, Integer count, Integer uid, Date ctime) {
         this.id = id;
         this.pid = pid;
         this.count = count;
         this.uid = uid;
+        this.ctime = ctime;
     }
 }
 

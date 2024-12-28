@@ -23,7 +23,7 @@ import org.springframework.web.filter.CorsFilter;
 public class CorsFilterConfiguration {
 
     public CorsFilterConfiguration() {
-        log.info("==========注入跨域过滤器=============");
+//        log.info("==========注入跨域过滤器=============");
     }
 
     @Bean("corsFilter")
