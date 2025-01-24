@@ -10,7 +10,7 @@ import java.util.List;
  * 店铺申请表(Shopapp)表数据库访问层
  *
  * @author yushi
- * @since 2024-12-20 12:02:01
+ * @since 2025-01-24 20:03:22
  */
 public interface ShopappDao {
 

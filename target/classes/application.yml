@@ -10,11 +10,7 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/
-springfox:
-  documentation:
-    swagger:
-      v2:
-        path: /swagger/swagger.json
+
 #  mvc:
 #    view:
 #      prefix: /views/

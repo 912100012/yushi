@@ -18,7 +18,7 @@ import cn.hutool.core.util.*;
  * 珠宝产品种类表(Type)表控制层
  *
  * @author yushi
- * @since 2024-12-20 12:02:01
+ * @since 2025-01-24 20:03:22
  */
 @Api(tags = "珠宝产品种类表")
 @RestController

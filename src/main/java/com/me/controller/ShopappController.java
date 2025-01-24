@@ -18,7 +18,7 @@ import cn.hutool.core.util.*;
  * 店铺申请表(Shopapp)表控制层
  *
  * @author yushi
- * @since 2024-12-20 12:02:01
+ * @since 2025-01-24 20:03:22
  */
 @Api(tags = "店铺申请表")
 @RestController

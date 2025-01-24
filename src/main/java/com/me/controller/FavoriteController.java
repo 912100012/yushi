@@ -18,7 +18,7 @@ import cn.hutool.core.util.*;
  * 收藏表(Favorite)表控制层
  *
  * @author yushi
- * @since 2024-12-20 12:01:59
+ * @since 2025-01-24 20:03:20
  */
 @Api(tags = "收藏表")
 @RestController

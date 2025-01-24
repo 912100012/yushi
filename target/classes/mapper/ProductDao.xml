@@ -9,6 +9,7 @@
         <result property="price" column="price" jdbcType="NUMERIC"/>
         <result property="byuid" column="byuid" jdbcType="INTEGER"/>
         <result property="ctime" column="ctime" jdbcType="TIMESTAMP"/>
+        <result property="img" column="img" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取集合-->
@@ -24,7 +25,8 @@
                tid,
                price,
                byuid,
-               ctime
+               ctime,
+               img
         from t_product
         where id = #{id}
     </select>
@@ -32,7 +34,7 @@
     <!--查询指定行数据-->
     <select id="queryListByLimit" resultMap="ProductMap">
         select
-        id, name, tid, price, byuid, ctime
+        id, name, tid, price, byuid, ctime, img
         from t_product
         <where>
             <if test="id != null">
@@ -52,6 +54,9 @@
             </if>
             <if test="ctime != null">
                 and ctime = #{ctime}
+            </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
             </if>
         </where>
     </select>
@@ -79,31 +84,35 @@
             <if test="ctime != null">
                 and ctime = #{ctime}
             </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into t_product(name, tid, price, byuid, ctime)
-        values (#{name}, #{tid}, #{price}, #{byuid}, #{ctime})
+        insert into t_product(name, tid, price, byuid, ctime, img)
+        values (#{name}, #{tid}, #{price}, #{byuid}, #{ctime}, #{img})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into t_product(name, tid, price, byuid, ctime)
+        insert into t_product(name, tid, price, byuid, ctime, img)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.tid}, #{entity.price}, #{entity.byuid}, #{entity.ctime})
+            (#{entity.name}, #{entity.tid}, #{entity.price}, #{entity.byuid}, #{entity.ctime}, #{entity.img})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into t_product(name, tid, price, byuid, ctime)
+        insert into t_product(name, tid, price, byuid, ctime, img)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.tid}, #{entity.price}, #{entity.byuid}, #{entity.ctime})
+            (#{entity.name}, #{entity.tid}, #{entity.price}, #{entity.byuid}, #{entity.ctime}, #{entity.img})
         </foreach>
         on duplicate key update
-        name = values(name)tid = values(tid)price = values(price)byuid = values(byuid)ctime = values(ctime)
+        name = values(name)tid = values(tid)price = values(price)byuid = values(byuid)ctime = values(ctime)img =
+        values(img)
     </insert>
 
     <!--通过主键修改数据-->
@@ -125,6 +134,9 @@
             <if test="ctime != null">
                 ctime = #{ctime},
             </if>
+            <if test="img != null and img != ''">
+                img = #{img},
+            </if>
         </set>
         where id = #{id}
     </update>
@@ -139,7 +151,7 @@
     <!--通过关键字查找-->
     <select id="getDimList" resultMap="ProductMap">
         select
-        id, name, tid, price, byuid, ctime
+        id, name, tid, price, byuid, ctime, img
         from t_product
         <where>
             <if test="id != null">
@@ -159,6 +171,9 @@
             </if>
             <if test="ctime != null">
                 and ctime LIKE CONCAT('%', #{ctime}, '%')
+            </if>
+            <if test="img != null and img != ''">
+                and img LIKE CONCAT('%', #{img}, '%')
             </if>
         </where>
     </select>

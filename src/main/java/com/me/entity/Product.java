@@ -12,7 +12,7 @@ import java.util.*;
 @Data
 @ApiModel("珠宝产品表")
 public class Product implements Serializable {
-    private static final long serialVersionUID = 957856879896331266L;
+    private static final long serialVersionUID = 357889466187380328L;
     /**
      * 产品ID
      */
@@ -49,6 +49,12 @@ public class Product implements Serializable {
     @ApiModelProperty("创建时间")
     private Date ctime;
 
+    /**
+     * 图片地址
+     */
+    @ApiModelProperty("图片地址")
+    private String img;
+
     public Product() {
     }
 
@@ -56,13 +62,14 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Product(Integer id, String name, Integer tid, Double price, Integer byuid, Date ctime) {
+    public Product(Integer id, String name, Integer tid, Double price, Integer byuid, Date ctime, String img) {
         this.id = id;
         this.name = name;
         this.tid = tid;
         this.price = price;
         this.byuid = byuid;
         this.ctime = ctime;
+        this.img = img;
     }
 }
 

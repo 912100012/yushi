@@ -17,7 +17,7 @@ import cn.hutool.core.util.*;
  * 店铺申请表(Shopapp)表服务实现类
  *
  * @author yushi
- * @since 2024-12-20 12:02:01
+ * @since 2025-01-24 20:03:22
  */
 @Service("shopappService")
 public class ShopappServiceImpl implements ShopappService {

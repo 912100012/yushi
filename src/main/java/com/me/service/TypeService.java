@@ -10,7 +10,7 @@ import java.util.*;
  * 珠宝产品种类表(Type)表服务接口
  *
  * @author yushi
- * @since 2024-12-20 12:02:02
+ * @since 2025-01-24 20:03:22
  */
 public interface TypeService {
 

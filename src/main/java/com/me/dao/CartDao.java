@@ -10,7 +10,7 @@ import java.util.List;
  * 购物车表(Cart)表数据库访问层
  *
  * @author yushi
- * @since 2024-12-28 11:23:27
+ * @since 2025-01-24 20:03:19
  */
 public interface CartDao {
 

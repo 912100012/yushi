@@ -11,7 +11,7 @@ import java.util.*;
 @Data
 @ApiModel("收藏表")
 public class Favorite implements Serializable {
-    private static final long serialVersionUID = 370938552415921686L;
+    private static final long serialVersionUID = -62485895930076847L;
     /**
      * 收藏ID
      */

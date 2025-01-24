@@ -12,7 +12,7 @@ import java.util.*;
 @Data
 @ApiModel("珠宝产品种类表")
 public class TypeVo implements Serializable {
-    private static final long serialVersionUID = 761132346138764249L;
+    private static final long serialVersionUID = 363669743620259037L;
 
 
 }

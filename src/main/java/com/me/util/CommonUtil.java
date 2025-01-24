@@ -2,6 +2,7 @@ package com.me.util;
 
 import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.io.resource.ResourceUtil;
+import com.me.config.SuccessResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,7 @@ public class CommonUtil {
 
     @ApiOperation("上传图片")
     @PostMapping("/upload")
-    public String uploadImage(@RequestParam("file") MultipartFile file) {
+    public SuccessResponse<?> uploadImage(@RequestParam("file") MultipartFile file) {
 
         // 处理上传的图片逻辑
         if (!file.isEmpty()) {
@@ -40,12 +41,12 @@ public class CommonUtil {
                 FileWriter fileWriter = new FileWriter(ResourceUtil.getResourceObj(imgDir).getUrl().getPath() + "\\" + fileName);
                 fileWriter.write(bytes, 0, bytes.length);
 
-                return "上传成功";
+                return new SuccessResponse<>(fileName, "上传成功。");
             } catch (Exception e) {
-                return "上传失败：" + e.getMessage();
+                return new SuccessResponse<>(false, "上传失败：" + e.getMessage());
             }
         } else {
-            return "上传失败：文件为空";
+            return new SuccessResponse<>(false, "上传失败：文件为空");
         }
     }
 }

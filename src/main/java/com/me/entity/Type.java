@@ -11,7 +11,7 @@ import java.util.*;
 @Data
 @ApiModel("珠宝产品种类表")
 public class Type implements Serializable {
-    private static final long serialVersionUID = 517586543446531944L;
+    private static final long serialVersionUID = -83968833311668362L;
     /**
      * 种类ID
      */
